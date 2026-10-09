@@ -16,3 +16,5 @@ export interface Product {
     pct: number;
   };
 }
+
+export type Unit = "kg" | "gm" | "litre" | "ml" | "dozen" | "piece" | undefined;

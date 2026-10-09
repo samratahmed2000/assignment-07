@@ -1,24 +1,19 @@
-const unitToBengali = (
-  unit: "kg" | "gm" | "litre" | "ml" | "dozen" | "piece" | undefined,
-): string => {
-  if (!unit) return "কেজি";
-
-  switch (unit) {
-    case "kg":
-      return "কেজি";
-    case "gm":
-      return "গ্রাম";
-    case "litre":
-      return "লিটার";
-    case "ml":
-      return "মিলিলিটার";
-    case "dozen":
-      return "ডজন";
-    case "piece":
-      return "টুকরো";
-    default:
-      return unit;
-  }
+const unitToBengali = ({ unit }: { unit: string | undefined }): string => {
+  return !unit
+    ? "কেজি"
+    : unit === "kg"
+      ? "কেজি"
+      : unit === "gm"
+        ? "গ্রাম"
+        : unit === "litre"
+          ? "লিটার"
+          : unit === "ml"
+            ? "মিলিলিটার"
+            : unit === "dozen"
+              ? "ডজন"
+              : unit === "piece"
+                ? "টুকরো"
+                : unit;
 };
 
 export default unitToBengali;

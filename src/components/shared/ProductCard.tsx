@@ -1,20 +1,22 @@
 import banglaPrice from "@/services/banglPrice";
 import unitToBengali from "@/services/unitToBengali";
 import { Product } from "@/types/type";
+import Image from "next/image";
+import { BsDashLg } from "react-icons/bs";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="flex flex-col justify-between gap-3 px-3 py-2.5 bg-white border border-gray-200 rounded-2xl">
       <div className="flex items-start gap-3 p-1">
-        <div className="w-6 h-6 md:w-8 md:h-8 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-[#f0f5f0]">
+        <div className="w-12 h-12 flex items-center justify-center rounded-lg text-2xl bg-[#f0f5f0]">
           {product?.image}
         </div>
 
         <div className="flex flex-col">
           <span className="text-[16px] font-semibold">{product?.nameBn}</span>
           <span className="text-[12px] font-normal">
-            প্রতি {unitToBengali(product?.unit) || "কেজি"}
+            প্রতি {unitToBengali({ unit: product?.unit }) || "কেজি"}
           </span>
         </div>
       </div>
@@ -31,12 +33,18 @@ const ProductCard = ({ product }: { product: Product }) => {
           </div>
         </div>
         <div
-          className={`flex items-center gap-1 text-[12px] font-semibold ${product?.change.dir === "up" ? "text-red-700" : "text-green-700"}`}
+          className={`flex items-center bg-gray-200 px-2 py-0.5 rounded-2xl gap-1 text-[12px] font-semibold ${product?.change.dir === "up" ? "text-red-600" : product?.change.dir === "down" ? "text-green-600" : "text-gray-600"}`}
         >
           <span>
-            {product?.change.dir === "up" ? <FaCaretUp /> : <FaCaretDown />}
+            {product?.change.dir === "up" ? (
+              <FaCaretUp />
+            ) : product?.change.dir === "down" ? (
+              <FaCaretDown />
+            ) : (
+              <BsDashLg />
+            )}
           </span>
-          <span>{banglaPrice.format(product?.change?.pct)}%</span>
+          <span>{banglaPrice.format(Math.abs(product?.change?.pct))}%</span>
         </div>
       </div>
     </div>
