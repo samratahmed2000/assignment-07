@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Bengali } from "next/font/google";
+import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/shared/Navbar";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/shared/Footer";
 
-const notoSans = Noto_Sans_Bengali({
+const hindSiliguri = Hind_Siliguri({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-theme="light">
       <body
-        className={`min-h-full flex flex-col bg-[#f0f5f0] ${notoSans.className}`}
+        className={`min-h-full flex flex-col bg-[#f0f5f0] ${hindSiliguri.className}`}
       >
         <Navbar />
         <div>{children}</div>

@@ -15,7 +15,7 @@ const PriceDown = async () => {
         <span className="text-green-700">
           <FaCaretDown />
         </span>
-        আজ দাম কমেছে
+        <span className="text-[20px] font-bold">আজ দাম কমেছে</span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 align-items-center  mt-2 mx-6 lg:mx-auto">
