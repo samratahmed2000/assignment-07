@@ -3,6 +3,7 @@ import { Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 
 const notoSans = Noto_Sans_Bengali({
   variable: "--font-geist-sans",
@@ -17,10 +18,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-theme="light">
-      <body className={`min-h-full flex flex-col ${notoSans.className}`}>
+      <body
+        className={`min-h-full flex flex-col bg-[#f0f5f0] ${notoSans.className}`}
+      >
         <Navbar />
         <div>{children}</div>
         <ToastContainer />
+        <Analytics />
       </body>
     </html>
   );

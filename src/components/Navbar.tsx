@@ -4,17 +4,22 @@ import Link from "next/link";
 import NavLinks from "./NavLinks";
 import { Suspense } from "react";
 import Marquee from "./Marquee";
-
-const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
+import date from "@/services/bangleDate";
 
 const Navbar = () => {
   return (
-    <header>
+    <header className="bg-white">
       <nav className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row justify-center lg:justify-between items-center p-3">
         <div className="flex flex-col lg:flex-row items-center gap-3">
           <div className="bg-green-700 rounded-2xl p-1">
-            <Link href="/">
-              <Image src={logo} alt="Logo" width={40} height={40} />
+            <Link href={"/"}>
+              <Image
+                src={logo}
+                alt="Logo"
+                width={40}
+                height={40}
+                className="p-2"
+              />
             </Link>
           </div>
 
