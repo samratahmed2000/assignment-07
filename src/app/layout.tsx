@@ -4,6 +4,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/shared/Navbar";
 import { Analytics } from "@vercel/analytics/next";
+import Footer from "@/components/shared/Footer";
 
 const notoSans = Noto_Sans_Bengali({
   variable: "--font-geist-sans",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       >
         <Navbar />
         <div>{children}</div>
+        <Footer />
         <ToastContainer />
         <Analytics />
       </body>

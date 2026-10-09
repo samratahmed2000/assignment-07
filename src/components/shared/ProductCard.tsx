@@ -1,7 +1,6 @@
 import banglaPrice from "@/services/banglPrice";
 import unitToBengali from "@/services/unitToBengali";
 import { Product } from "@/types/type";
-import Image from "next/image";
 import { BsDashLg } from "react-icons/bs";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
@@ -33,7 +32,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           </div>
         </div>
         <div
-          className={`flex items-center bg-gray-200 px-2 py-0.5 rounded-2xl gap-1 text-[12px] font-semibold ${product?.change.dir === "up" ? "text-red-600" : product?.change.dir === "down" ? "text-green-600" : "text-gray-600"}`}
+          className={`flex items-center bg-gray-100 px-2 py-0.5 rounded-2xl gap-1 text-[12px] font-semibold ${product?.change.dir === "up" ? "text-red-600" : product?.change.dir === "down" ? "text-green-600" : "text-gray-600"}`}
         >
           <span>
             {product?.change.dir === "up" ? (
