@@ -1,29 +1,13 @@
-import baseUrl from "@/services/baseUrl";
-import banglaPrice from "@/services/banglaPrice";
 import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
-
-interface MarqueeItem {
-  id: string;
-  nameBn: string;
-  categoryIcon: string;
-  today: number;
-  change: {
-    dir: "up" | "down";
-    pct: number;
-  };
-}
-
-const getMarquee = async () => {
-  const res = await fetch(`${baseUrl}/api/bazardor/products`);
-  const data: MarqueeItem[] = await res.json();
-  return data;
-};
+import { getProducts } from "@/services/apiData";
+import banglaPrice from "@/services/banglPrice";
 
 const Marquee = async () => {
-  const marquee = await getMarquee();
-  console.log(marquee);
+  const marquee = await getProducts();
+
+  
 
   return (
     <div className="border border-gray-100 py-2">
@@ -32,10 +16,10 @@ const Marquee = async () => {
           <Link href={`/product/${m?.id}`} key={m?.id}>
             <div className="flex items-center gap-3 mx-4">
               <div className="flex gap-1.5 items-center">
-                <span>{m?.categoryIcon}</span>
+                <span>{m?.image}</span>
                 <span>{m?.nameBn}</span>
                 <span className="text-gray-600">
-                  {banglaPrice.format(m?.today)} টাকা/কেজি
+                  {banglaPrice.format(m?.today)} টাকা/
                 </span>
               </div>
 

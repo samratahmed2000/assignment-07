@@ -1,22 +1,5 @@
-import baseUrl from "@/services/baseUrl";
+import { getNavLinks } from "@/services/apiData";
 import Link from "next/link";
-
-interface NavLink {
-  id: number;
-  nameBn: string;
-  slug: string;
-  icon: string;
-}
-
-const getNavLinks = async () => {
-  try {
-    const res = await fetch(`${baseUrl}/api/bazardor/categories`);
-    const data: NavLink[] = await res.json();
-    return data;
-  } catch (error) {
-    console.log("Error fetching nav links:", error);
-  }
-};
 
 const NavLinks = async () => {
   const navLinks = await getNavLinks();

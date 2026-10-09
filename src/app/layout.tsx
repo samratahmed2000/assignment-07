@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/shared/Navbar";
 import { Analytics } from "@vercel/analytics/next";
 
 const notoSans = Noto_Sans_Bengali({

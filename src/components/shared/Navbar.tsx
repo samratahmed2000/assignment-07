@@ -4,7 +4,7 @@ import Link from "next/link";
 import NavLinks from "./NavLinks";
 import { Suspense } from "react";
 import Marquee from "./Marquee";
-import date from "@/services/bangleDate";
+import date from "@/services/dateToBangla";
 
 const Navbar = () => {
   return (
