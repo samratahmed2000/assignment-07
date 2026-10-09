@@ -11,9 +11,7 @@ const Hero = () => {
         </div>
 
         <div>
-          <h1 className="text-[36px] font-bold mt-2">
-            আজকের বাজারের দাম এক নজরে
-          </h1>
+          <h1 className="text-[36px] font-bold">আজকের বাজারের দাম এক নজরে</h1>
           <p className="text-[16px] font-normal text-[#999e9a] my-4">
             চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক
             বিস্তারিত, গড়, সর্বনিম্ন- <br /> সর্বাধিক এবং দামের পরিবর্তন এক

@@ -8,10 +8,9 @@ const PriceUp = async () => {
   const filteredPriceUp = priceUp?.filter(
     (product) => product?.change?.dir === "up",
   );
-  console.log(filteredPriceUp);
 
   return (
-    <section className="max-w-7xl mx-auto pt-4">
+    <section className="max-w-7xl mx-auto py-4">
       <div className="flex items-center gap-1 mx-6 lg:mx-auto">
         <span className="text-red-700">
           <FaCaretUp />
