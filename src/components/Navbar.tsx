@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
 import { Suspense } from "react";
+import Marquee from "./Marquee";
 
 const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
 
@@ -35,6 +36,10 @@ const Navbar = () => {
 
       <Suspense fallback={<div>Loading...</div>}>
         <NavLinks />
+      </Suspense>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Marquee />
       </Suspense>
     </header>
   );

@@ -1,4 +1,4 @@
-import baseUrl from "@/baseUrl";
+import baseUrl from "@/services/baseUrl";
 import Link from "next/link";
 
 interface NavLink {
@@ -20,14 +20,15 @@ const getNavLinks = async () => {
 
 const NavLinks = async () => {
   const navLinks = await getNavLinks();
-  console.log(navLinks);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 items-center px-18 py-2 my-3 border-t border-gray-100">
+    <div className="flex flex-col lg:flex-row gap-8 items-center px-18 py-3 border-t border-gray-100">
       {navLinks?.map((n) => (
         <Link href={n?.slug} key={n?.id}>
-          <span className="mr-1">{n?.icon}</span>
-          {n?.nameBn}
+          <div className="flex gap-1">
+            <span>{n?.icon}</span>
+            <span>{n?.nameBn}</span>
+          </div>
         </Link>
       ))}
     </div>

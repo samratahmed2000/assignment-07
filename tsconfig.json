@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-,     "src/baseUrl.js"  ],
+,     "src/services/baseUrl.js"  ],
   "exclude": ["node_modules"]
 }
