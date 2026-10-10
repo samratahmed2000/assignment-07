@@ -1,10 +1,10 @@
 import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
-import { getProducts } from "@/services/apiData";
-import banglaPrice from "@/services/banglaPrice";
+import { getProducts } from "@/helper/apiData";
+import banglaPrice from "@/helper/banglaPrice";
 import { BsDashLg } from "react-icons/bs";
-import unitToBengali from "@/services/unitToBengla";
+import unitToBengali from "@/helper/unitToBengla";
 
 const Marquee = async () => {
   const marquee = await getProducts();

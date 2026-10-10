@@ -1,4 +1,4 @@
-import date from "@/services/dateToBangla";
+import date from "@/helper/dateToBangla";
 import hero from "@/assets/hero.png";
 import Image from "next/image";
 import BrowseProduct from "../button/BrowseProduct";

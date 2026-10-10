@@ -44,8 +44,6 @@ const ToggleButton = () => {
           </Link>
         </div>
       </div>
-
-      <div>{}</div>
     </section>
   );
 };

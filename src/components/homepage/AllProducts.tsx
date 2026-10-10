@@ -1,4 +1,4 @@
-import { getProducts } from "@/services/apiData";
+import { getProducts } from "@/helper/apiData";
 import Link from "next/link";
 import ProductCard from "../shared/ProductCard";
 import { Suspense } from "react";

@@ -1,12 +1,22 @@
 "use client";
 
+import { usePasswordToggle } from "@/helper/usePasswordToggle";
 import { signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaGithub, FaLongArrowAltLeft } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { IoEye, IoEyeOff } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
+  const {
+    showPassword,
+    showConfirmPassword,
+    togglePasswordVisibility,
+    toggleConfirmPasswordVisibility,
+  } = usePasswordToggle();
+
   const router = useRouter();
 
   const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
@@ -26,12 +36,12 @@ const SignUpPage = () => {
     });
 
     if (data) {
-      console.log(data);
+      toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে! 🎉");
       router.push("/signin");
     }
 
     if (error) {
-      console.log(error);
+      toast.error("পাসওয়ার্ড মেলেনি, সঠিক পাসওয়ার্ড দিন!");
     }
   };
 
@@ -66,9 +76,8 @@ const SignUpPage = () => {
               minLength={3}
               maxLength={32}
               placeholder="যেমন: সম্রাট আহমেদ"
-              className="input validator w-full px-4 py-2.5 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
+              className="input validator w-full px-4 py-2 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
             />
-            <span className="validator-hint">Must be 3 characters</span>
           </div>
 
           {/* Email Input */}
@@ -85,12 +94,11 @@ const SignUpPage = () => {
               name="email"
               required
               placeholder="ahmed@mail.com"
-              className="input validator w-full px-4 py-2.5 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
+              className="input validator w-full px-4 py-2 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
             />
-            <div className="validator-hint">Enter valid email address</div>
           </div>
 
-          {/* Password Input */}
+          {/* পাসওয়ার্ড ইনপুট */}
           <div className="flex flex-col gap-2">
             <label
               htmlFor="password"
@@ -98,24 +106,32 @@ const SignUpPage = () => {
             >
               পাসওয়ার্ড
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              minLength={8}
-              maxLength={32}
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-              placeholder="কমপক্ষে ৮ অক্ষর"
-              className="input validator w-full px-4 py-2.5 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
-            />
-            <span className="validator-hint">
-              8 Characters, 1 Number, 1 Lowercase, 1 Uppercase
-            </span>
+
+            <div className="relative flex items-center w-full">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                required
+                minLength={8}
+                maxLength={32}
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                placeholder="কমপক্ষে ৮ অক্ষর"
+                className="input validator w-full px-4  py-2 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
+              />
+
+              <button
+                type="button"
+                onClick={() => togglePasswordVisibility()}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              >
+                {showPassword ? <IoEye size={20} /> : <IoEyeOff size={20} />}
+              </button>
+            </div>
           </div>
 
-          {/* Confirm Password Input */}
+          {/* নিশ্চিত করুন পাসওয়ার্ড ইনপুট */}
           <div className="flex flex-col gap-2">
             <label
               htmlFor="confirm-password"
@@ -123,21 +139,33 @@ const SignUpPage = () => {
             >
               পাসওয়ার্ড নিশ্চিত করুন
             </label>
-            <input
-              type="password"
-              id="confirm-password"
-              name="confirm-password"
-              required
-              minLength={8}
-              maxLength={32}
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-              placeholder="আবার লিখুন"
-              className="input validator w-full px-4 py-2.5 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
-            />
-            <span className="validator-hint">
-              8 Characters, 1 Number, 1 Lowercase, 1 Uppercase
-            </span>
+
+            <div className="relative flex items-center w-full">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirm-password"
+                name="confirm_password"
+                required
+                minLength={8}
+                maxLength={32}
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                placeholder="আবারও পাসওয়ার্ডটি লিখুন"
+                className="input validator w-full px-4 py-2 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
+              />
+
+              <button
+                type="button"
+                onClick={() => toggleConfirmPasswordVisibility()}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+              >
+                {showConfirmPassword ? (
+                  <IoEye size={20} />
+                ) : (
+                  <IoEyeOff size={20} />
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Submit Button */}
@@ -161,7 +189,7 @@ const SignUpPage = () => {
               type="button"
               className="flex items-center justify-center gap-2 border border-[#e2e8f0] rounded-lg py-2.5 text-[14px] font-medium text-[#4a5568]  transition-colors hover:bg-white hover:border hover:border-[#008744]"
             >
-              {/* Substitute with an actual SVG if icons are needed */}
+              {/* Substitute with an actual SVG */}
               <span className="text-red-500 font-bold">
                 <FcGoogle />
               </span>

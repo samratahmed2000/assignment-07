@@ -1,5 +1,5 @@
-import banglaPrice from "@/services/banglaPrice";
-import unitToBengali from "@/services/unitToBengla";
+import banglaPrice from "@/helper/banglaPrice";
+import unitToBengali from "@/helper/unitToBengla";
 import { Product } from "@/types/type";
 import { BsDashLg } from "react-icons/bs";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";

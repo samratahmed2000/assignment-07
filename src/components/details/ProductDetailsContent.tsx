@@ -1,6 +1,6 @@
-import { baseUrl } from "@/services/apiData";
-import banglaPrice from "@/services/banglaPrice";
-import unitToBengali from "@/services/unitToBengla";
+import { baseUrl } from "@/helper/apiData";
+import banglaPrice from "@/helper/banglaPrice";
+import unitToBengali from "@/helper/unitToBengla";
 import { Product } from "@/types/type";
 import Link from "next/link";
 import { BsDashLg } from "react-icons/bs";

@@ -1,4 +1,4 @@
-import { getCategories } from "@/services/apiData";
+import { getCategories } from "@/helper/apiData";
 import ActiveLink from "../button/ActiveLink";
 
 const NavLinks = async () => {

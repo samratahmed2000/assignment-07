@@ -1,5 +1,5 @@
 import ProductCard from "@/components/shared/ProductCard";
-import { baseUrl, getCategories } from "@/services/apiData";
+import { baseUrl, getCategories } from "@/helper/apiData";
 import { Product } from "@/types/type";
 import Link from "next/link";
 

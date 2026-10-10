@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import logo from "@/assets/logo.png";
-import date from "@/services/dateToBangla";
+import date from "@/helper/dateToBangla";
 
 const LogoLink = () => {
   const router = useRouter();
@@ -33,7 +33,7 @@ const LogoLink = () => {
 
       <div
         className="flex flex-col items-center lg:items-start cursor-pointer"
-        onClick={handleLogoClick}
+        onClick={(e) => handleLogoClick(e)}
       >
         <h1 className="text-2xl font-bold">বাজার দর</h1>
         <p className="text-gray-600 text-[12px]">{date}</p>
