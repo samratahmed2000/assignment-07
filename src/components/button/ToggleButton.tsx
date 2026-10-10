@@ -38,7 +38,7 @@ const ToggleButton = () => {
             </button>
           </Link>
           <Link href={"/signup"} className="w-full lg:w-auto text-center">
-            <button className="w-full lg:w-auto btn btn-success bg-green-700/80 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-xl transition-colors">
+            <button className="w-full lg:w-auto btn btn-success bg-[#008744] hover:bg-green-800 text-white font-medium py-2 px-4 rounded-xl transition-colors">
               সাইন আপ
             </button>
           </Link>

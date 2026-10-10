@@ -12,13 +12,12 @@ const ActiveLink = ({
   children: ReactNode;
 }) => {
   const pathname = usePathname();
-  // চেক করা হচ্ছে বর্তমান পাথ এই লিংকের পাথের সাথে মিলে কি না
   const isActive = pathname === href;
 
   return (
     <Link
       href={href}
-      className={`flex flex-col items-center ${isActive ? "text-green-600 font-semibold" : "text-gray-600"}`}
+      className={`flex gap-1 items-center ${isActive ? "text-[#008744] font-semibold" : "text-gray-600"}`}
     >
       {children}
     </Link>

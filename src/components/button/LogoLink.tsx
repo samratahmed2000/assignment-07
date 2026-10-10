@@ -25,7 +25,7 @@ const LogoLink = () => {
   return (
     <section className="flex flex-col lg:flex-row items-center gap-3">
       <div
-        className="bg-green-700 rounded-2xl p-1 cursor-pointer"
+        className="bg-[#008744] rounded-2xl p-1 cursor-pointer"
         onClick={handleLogoClick}
       >
         <Image src={logo} alt="Logo" width={40} height={40} className="p-2" />

@@ -8,7 +8,7 @@ const Hero = () => {
     <section className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:items-start p-4 my-8 max-w-7xl mx-8 md:mx-6 lg:mx-auto bg-white border border-gray-200 rounded-2xl">
       <div className="flex flex-col gap-4 px-2 py-1 items-center lg:items-start text-center lg:text-left">
         <div className="text-center bg-green-100 rounded-2xl py-0.5 px-3">
-          <span className="text-[14px] font-medium text-green-700">{date}</span>
+          <span className="text-[14px] font-medium text-[#008744]">{date}</span>
         </div>
 
         <div>
