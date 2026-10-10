@@ -32,10 +32,14 @@ const Navbar = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-3 text-sm">
-          <button>সাইন ইন</button>
-          <button className="btn btn-success bg-green-700/80 text-white">
-            সাইন আপ
-          </button>
+          <Link href={"/signup"}>
+            <button>সাইন ইন</button>
+          </Link>
+          <Link href={"signup"}>
+            <button className="btn btn-success bg-green-700/80 text-white">
+              সাইন আপ
+            </button>
+          </Link>
         </div>
       </nav>
 

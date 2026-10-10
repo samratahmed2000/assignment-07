@@ -1,6 +1,6 @@
 import { Category, Product } from "@/types/type";
 
-export const baseUrl = `https://api.api-store.workers.dev`;
+export const baseUrl = `https://openapi.programming-hero.com`;
 
 export const getCategories = async () => {
   try {

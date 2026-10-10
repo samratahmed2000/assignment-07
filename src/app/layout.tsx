@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import Navbar from "@/components/shared/Navbar";
 import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/shared/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const hindSiliguri = Hind_Siliguri({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div>{children}</div>
         <Footer />
         <ToastContainer />
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>

@@ -11,6 +11,7 @@
   "dependencies": {
     "@better-auth/mongo-adapter": "^1.7.7",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "better-auth": "^1.7.7",
     "mongodb": "^7.7.0",
     "next": "16.4.0",
