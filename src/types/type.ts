@@ -1,21 +1,21 @@
 export interface Category {
   id: number;
-  nameBn: string;
   slug: string;
+  nameBn: string;
   icon: string;
 }
 
 export interface Product {
   id: string;
+  slug: string;
   nameBn: string;
+  category: string;
+  categoryNameBn: string;
   image: string;
   today: number;
-  category?: string;
-  categoryNameBn?: string;
-  slug: string;
-  unit?: "kg" | "gm" | "litre" | "ml" | "dozen" | "piece";
+  unit: string;
   change: {
-    dir: "up" | "down";
+    dir: "up" | "down" | "flat";
     pct: number;
   };
   markets: {

@@ -184,7 +184,7 @@ const ProductDetailsContent = async ({
       </div>
 
       {/* Market Price Table */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+      <div className="bg-white rounded-2xl border border-gray-200 p-2 lg:p-6 shadow-sm">
         {products?.markets && products?.markets?.length > 0 ? (
           <div>
             <h2 className="text-lg font-bold text-gray-800 mb-4">

@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         className={`min-h-full flex flex-col bg-[#f0f5f0] ${hindSiliguri.className}`}
       >
         <Navbar />
-        <div>{children}</div>
+        <main>{children}</main>
         <Footer />
         <ToastContainer />
         <SpeedInsights />

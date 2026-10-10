@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 const Homepage = () => {
   return (
-    <main>
+    <main id="top">
       <Hero />
       <Suspense fallback={<div>Loading...</div>}>
         <PriceUp />

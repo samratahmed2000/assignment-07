@@ -7,7 +7,7 @@ const AllProducts = async () => {
   const allProducts = await getProducts();
 
   return (
-    <section id="#সব_পণ্য" className="max-w-7xl mx-auto py-4">
+    <section id="products" className="max-w-7xl mx-auto py-4">
       <div className="flex flex-col justify-between gap-1 mx-6 lg:mx-auto">
         <span className="text-[20px] font-bold">সব পণ্য</span>
         <span className="text-[14px] text-gray-500 font-normal">

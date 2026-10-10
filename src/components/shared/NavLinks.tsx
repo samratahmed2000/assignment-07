@@ -1,22 +1,22 @@
 import { getCategories } from "@/services/apiData";
-import Link from "next/link";
+import ActiveLink from "../button/ActiveLink";
 
 const NavLinks = async () => {
   const navLinks = await getCategories();
 
   return (
-    <div className=" max-w-7xl mx-auto px-6 lg:px-8 py-3 border-t border-gray-100">
-      <ul className="flex flex-col lg:flex-row gap-8 items-center">
+    <section className=" max-w-7xl mx-auto px-6 lg:px-8 py-3 border-t border-gray-100">
+      <ul className="flex gap-8 justify-center lg:justify-start items-center">
         {navLinks?.map((navlink) => (
           <li key={navlink?.id}>
-            <Link href={`/category/${navlink?.slug}`}>
+            <ActiveLink href={`/category/${navlink?.slug}`}>
               <span>{navlink?.icon}</span>
               <span>{navlink?.nameBn}</span>
-            </Link>
+            </ActiveLink>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

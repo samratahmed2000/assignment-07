@@ -1,46 +1,18 @@
-import logo from "@/assets/logo.png";
-import Image from "next/image";
-import Link from "next/link";
-import NavLinks from "./NavLinks";
 import { Suspense } from "react";
 import Marquee from "./Marquee";
-import date from "@/services/dateToBangla";
+import LogoLink from "../button/LogoLink";
+import ToggleButton from "../button/ToggleButton";
+import NavLinks from "./NavLinks";
 
 const Navbar = () => {
   return (
-    <header className="bg-white">
-      <nav className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row justify-center lg:justify-between items-center p-3">
-        <div className="flex flex-col lg:flex-row items-center gap-3">
-          <div className="bg-green-700 rounded-2xl p-1">
-            <Link href={"/"}>
-              <Image
-                src={logo}
-                alt="Logo"
-                width={40}
-                height={40}
-                className="p-2"
-              />
-            </Link>
-          </div>
+    <header className="bg-white lg:sticky lg:top-0 lg:backdrop-blur-2xl lg:z-50 border-b border-gray-100">
+      <nav className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row justify-between items-center p-3 relative">
+        <Suspense fallback={<div>Loading...</div>}>
+          <LogoLink />
+        </Suspense>
 
-          <div className="flex flex-col items-center lg:items-start">
-            <Link href={"/"} className="text-2xl font-bold">
-              বাজার দর
-            </Link>
-            <p className="text-gray-600 text-[12px]">{date}</p>
-          </div>
-        </div>
-
-        <div className="flex flex-col lg:flex-row items-center gap-3 text-sm">
-          <Link href={"/signup"}>
-            <button>সাইন ইন</button>
-          </Link>
-          <Link href={"signup"}>
-            <button className="btn btn-success bg-green-700/80 text-white">
-              সাইন আপ
-            </button>
-          </Link>
-        </div>
+        <ToggleButton />
       </nav>
 
       <Suspense fallback={<div>Loading...</div>}>

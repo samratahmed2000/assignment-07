@@ -1,6 +1,7 @@
 import date from "@/services/dateToBangla";
 import hero from "@/assets/hero.png";
 import Image from "next/image";
+import BrowseProduct from "../button/BrowseProduct";
 
 const Hero = () => {
   return (
@@ -19,11 +20,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div>
-          <button className="btn btn-success bg-green-700 text-white">
-            সব পণ্য দেখুন
-          </button>
-        </div>
+        <BrowseProduct />
       </div>
 
       <div>
