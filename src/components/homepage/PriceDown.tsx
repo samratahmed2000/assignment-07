@@ -2,6 +2,7 @@ import { getProducts } from "@/services/apiData";
 import Link from "next/link";
 import { FaCaretDown } from "react-icons/fa";
 import ProductCard from "../shared/ProductCard";
+import { Suspense } from "react";
 
 const PriceDown = async () => {
   const priceDown = await getProducts();
@@ -18,16 +19,18 @@ const PriceDown = async () => {
         <span className="text-[20px] font-bold">আজ দাম কমেছে</span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 align-items-center  mt-2 mx-6 lg:mx-auto">
-        {filteredPriceDown
-          ?.sort((a, b) => b?.change?.pct - a?.change?.pct)
-          .slice(0, 6)
-          .map((product) => (
-            <Link key={product?.id} href={`/products/${product?.id}`}>
-              <ProductCard product={product} />
-            </Link>
-          ))}
-      </div>
+      <Suspense fallback="loading..">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 items-center mt-2 mx-6 lg:mx-auto">
+          {filteredPriceDown
+            ?.sort((a, b) => b?.change?.pct - a?.change?.pct)
+            .slice(0, 6)
+            .map((product) => (
+              <Link key={product?.id} href={`/product/${product?.id}`}>
+                <ProductCard product={product} />
+              </Link>
+            ))}
+        </div>
+      </Suspense>
     </section>
   );
 };

@@ -1,26 +1,28 @@
-import banglaPrice from "@/services/banglPrice";
-import unitToBengali from "@/services/unitToBengali";
+import banglaPrice from "@/services/banglaPrice";
+import unitToBengali from "@/services/unitToBengla";
 import { Product } from "@/types/type";
 import { BsDashLg } from "react-icons/bs";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div className="flex flex-col justify-between gap-3 px-3 py-2.5 bg-white border border-gray-200 rounded-2xl">
-      <div className="flex items-start gap-3 p-1">
-        <div className="w-12 h-12 flex items-center justify-center rounded-lg text-2xl bg-[#f0f5f0]">
+    <div className="flex flex-col justify-center items-center lg:items-start lg:justify-between gap-3 px-3 py-2.5h bg-white border border-gray-200 rounded-2xl">
+      <div className="flex flex-col items-center lg:items-start gap-3 p-1">
+        <div className="w-20 h-20 lg:w-12 lg:h-12 text-6xl flex items-center justify-center rounded-lg lg:text-2xl bg-[#f0f5f0]">
           {product?.image}
         </div>
 
-        <div className="flex flex-col">
-          <span className="text-[16px] font-semibold">{product?.nameBn}</span>
+        <div className="flex flex-col items-center">
+          <span className="text-2xl lg:text-[16px] font-semibold">
+            {product?.nameBn}
+          </span>
           <span className="text-[12px] font-normal">
             প্রতি {unitToBengali({ unit: product?.unit }) || "কেজি"}
           </span>
         </div>
       </div>
 
-      <div className="flex justify-between items-end px-3">
+      <div className="flex flex-col lg:flex-row justify-between items-center px-3 w-full">
         <div className="flex flex-col my-0.5">
           <span className="text-[12px] font-normal">আজকের দাম</span>
 

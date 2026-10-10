@@ -15,7 +15,6 @@ const Homepage = () => {
         <PriceDown />
       </Suspense>
       <Suspense fallback={<div>Loading...</div>}>
-        {" "}
         <AllProducts />
       </Suspense>
     </main>

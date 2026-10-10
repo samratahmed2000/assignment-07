@@ -1,6 +1,7 @@
 import { getProducts } from "@/services/apiData";
 import Link from "next/link";
 import ProductCard from "../shared/ProductCard";
+import { Suspense } from "react";
 
 const AllProducts = async () => {
   const allProducts = await getProducts();
@@ -15,10 +16,12 @@ const AllProducts = async () => {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 align-items-center  mt-2 mx-6 lg:mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 items-center  mt-2 mx-6 lg:mx-auto">
         {allProducts?.map((product) => (
-          <Link key={product?.id} href={`/products/${product?.id}`}>
-            <ProductCard product={product} />
+          <Link key={product?.id} href={`/product/${product?.id}`}>
+            <Suspense fallback="loading..">
+              <ProductCard product={product} />
+            </Suspense>
           </Link>
         ))}
       </div>
