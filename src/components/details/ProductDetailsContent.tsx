@@ -1,8 +1,8 @@
 import { baseUrl } from "@/helper/apiData";
-import banglaPrice from "@/helper/banglaPrice";
-import unitToBengali from "@/helper/unitToBengla";
+import { formatPrice, getUnitBn } from "@/helper/utils";
 import { Product } from "@/types/type";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { BsDashLg } from "react-icons/bs";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
@@ -13,6 +13,9 @@ export const getProducts = async (productId: string) => {
         revalidate: 60,
       },
     });
+
+    if (!res.ok) return null;
+
     const data: Product = await res.json();
     return data;
   } catch (error) {
@@ -32,11 +35,7 @@ const ProductDetailsContent = async ({
   const products = await getProducts(productId);
 
   if (!products) {
-    return (
-      <div className="text-center py-20 font-bold text-red-500 text-lg">
-        দুঃখিত, পণ্যটির কোনো তথ্য পাওয়া যায়নি।
-      </div>
-    );
+    notFound();
   }
 
   const allMinPrice: number[] = products?.markets?.map((m) => m.min) ?? [];
@@ -83,8 +82,7 @@ const ProductDetailsContent = async ({
               {products?.nameBn}
             </h1>
             <span className="text-sm text-gray-500 font-medium">
-              প্রতি {unitToBengali({ unit: products?.unit }) || "কেজি"} ·{" "}
-              {products?.nameBn}
+              প্রতি {getUnitBn(products?.unit) || "কেজি"} · {products?.nameBn}
             </span>
             <span className="text-sm text-gray-600 font-medium">
               গতকালের তুলনায় আজ দাম{" "}
@@ -95,7 +93,7 @@ const ProductDetailsContent = async ({
                     ? "কমেছে"
                     : "অপরিবর্তিত আছে"}
               </span>{" "}
-              · {banglaPrice.format(Math.abs(products?.change?.pct ?? 0))} টাকা
+              · {formatPrice(Math.abs(products?.change?.pct ?? 0))} টাকা
             </span>
           </div>
         </div>
@@ -106,10 +104,10 @@ const ProductDetailsContent = async ({
             আজকের দাম
           </span>
           <span className="text-[32px] font-black text-[#1f2937] leading-none mb-1">
-            {banglaPrice.format(products?.today ?? 0)}
+            {formatPrice(products?.today ?? 0)}
           </span>
           <span className="text-[12px] text-gray-500 mb-2">
-            টাকা / {unitToBengali({ unit: products?.unit }) || "কেজি"}
+            টাকা / {getUnitBn(products?.unit) || "কেজি"}
           </span>
 
           {/* Percentage Indicator */}
@@ -131,9 +129,7 @@ const ProductDetailsContent = async ({
                 <BsDashLg />
               )}
             </span>
-            <span>
-              {banglaPrice.format(Math.abs(products?.change?.pct ?? 0))}%
-            </span>
+            <span>{formatPrice(Math.abs(products?.change?.pct ?? 0))}%</span>
           </div>
         </div>
       </div>
@@ -146,7 +142,7 @@ const ProductDetailsContent = async ({
             সর্বনিম্ন দাম
           </span>
           <span className="text-[36px] font-extrabold text-green-700 leading-none mb-1">
-            {banglaPrice.format(minPrice)}
+            {formatPrice(minPrice)}
             <span className="text-[20px] font-semibold mx-1">টাকা</span>
           </span>
           <span className="text-[13px] font-normal text-gray-400">
@@ -160,7 +156,7 @@ const ProductDetailsContent = async ({
             সর্বাধিক দাম
           </span>
           <span className="text-[36px] font-extrabold text-red-600 leading-none mb-1">
-            {banglaPrice.format(maxPrice)}
+            {formatPrice(maxPrice)}
             <span className="text-[20px] font-semibold mx-1">টাকা</span>
           </span>
           <span className="text-[13px] font-normal text-gray-400">
@@ -174,11 +170,11 @@ const ProductDetailsContent = async ({
             গড় দাম
           </span>
           <span className="text-[36px] font-extrabold text-green-600 leading-none mb-1">
-            {banglaPrice.format(avgPrice)}
+            {formatPrice(avgPrice)}
             <span className="text-[20px] font-semibold mx-1">টাকা</span>
           </span>
           <span className="text-[13px] font-normal text-gray-400">
-            প্রতি {unitToBengali({ unit: products?.unit }) || "কেজি"}-এর হিসাবে
+            প্রতি {getUnitBn(products?.unit) || "কেজি"}-এর হিসাবে
           </span>
         </div>
       </div>
@@ -212,13 +208,13 @@ const ProductDetailsContent = async ({
                         <td className="text-left">{marketItem.market}</td>
                         <td className="text-left">{marketItem.division}</td>
                         <td className="text-center">
-                          {banglaPrice.format(marketItem.min)} টাকা
+                          {formatPrice(marketItem.min)} টাকা
                         </td>
                         <td className="text-right">
-                          {banglaPrice.format(marketItem.max)} টাকা
+                          {formatPrice(marketItem.max)} টাকা
                         </td>
                         <td className="text-right">
-                          {banglaPrice.format(itemAvg)} টাকা
+                          {formatPrice(itemAvg)} টাকা
                         </td>
                       </tr>
                     );

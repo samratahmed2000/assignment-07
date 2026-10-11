@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import CategoryContent from "../../../components/details/CategoryContent";
 
 interface PageProps {
@@ -8,13 +7,7 @@ interface PageProps {
 export default function CategoryPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-[#f8faf8]">
-      <Suspense
-        fallback={
-          <div className="text-center py-20 font-medium text-gray-500 animate-pulse"></div>
-        }
-      >
-        <CategoryContent params={params} />
-      </Suspense>
+      <CategoryContent params={params} />
     </main>
   );
 }

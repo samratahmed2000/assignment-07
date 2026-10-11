@@ -28,3 +28,9 @@ export interface Product {
 }
 
 export type Unit = "kg" | "gm" | "litre" | "ml" | "dozen" | "piece" | undefined;
+
+export type UserType = {
+  name: string;
+  email: string;
+  image?: string;
+} | null;

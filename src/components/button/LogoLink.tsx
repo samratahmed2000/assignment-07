@@ -3,9 +3,10 @@
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import logo from "@/assets/logo.png";
-import date from "@/helper/dateToBangla";
 
 const LogoLink = () => {
+  const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
+
   const router = useRouter();
   const pathname = usePathname();
 

@@ -2,9 +2,9 @@ import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 import { getProducts } from "@/helper/apiData";
-import banglaPrice from "@/helper/banglaPrice";
 import { BsDashLg } from "react-icons/bs";
-import unitToBengali from "@/helper/unitToBengla";
+import { formatPrice, getUnitBn } from "@/helper/utils";
+
 
 const Marquee = async () => {
   const marquee = await getProducts();
@@ -20,8 +20,8 @@ const Marquee = async () => {
                   <span>{marquee?.image}</span>
                   <span>{marquee?.nameBn}</span>
                   <span className="text-gray-600">
-                    {banglaPrice.format(marquee?.today)} টাকা/
-                    {unitToBengali({ unit: marquee?.unit }) || "কেজি"}
+                    {formatPrice(marquee?.today)} টাকা/
+                    {getUnitBn(marquee?.unit)}
                   </span>
                 </div>
 
@@ -38,7 +38,7 @@ const Marquee = async () => {
                     )}
                   </span>
                   <span>
-                    {banglaPrice.format(Math.abs(marquee?.change?.pct))}%
+                    {Math.abs(marquee?.change?.pct ?? 0).toFixed(2)}%
                   </span>
                 </div>
               </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { usePasswordToggle } from "@/helper/usePasswordToggle";
-import { signUp } from "@/lib/auth-client";
+import { useUserInfo } from "@/helper/useUserInfo";
+import { signIn, signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaGithub, FaLongArrowAltLeft } from "react-icons/fa";
@@ -11,6 +12,17 @@ import { toast } from "react-toastify";
 
 const SignUpPage = () => {
   const {
+    userName,
+    setUserName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+  } = useUserInfo();
+
+  const {
     showPassword,
     showConfirmPassword,
     togglePasswordVisibility,
@@ -19,7 +31,41 @@ const SignUpPage = () => {
 
   const router = useRouter();
 
-  const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+  const handleGoogleSignIn = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const data = await signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+
+    if (data?.data) {
+      toast.success("সাইন ইন সফল হয়েছে! 🎉!");
+      router.push("/");
+    }
+
+    if (data?.error) {
+      toast.error("সাইন ইন করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন!");
+    }
+  };
+
+  const handleGithubSignIn = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const data = await signIn.social({
+      provider: "github",
+      callbackURL: "/",
+    });
+
+    if (data?.data) {
+      toast.success("সাইন ইন সফল হয়েছে! 🎉!");
+      router.push("/");
+    }
+
+    if (data?.error) {
+      toast.error("সাইন ইন করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন!");
+    }
+  };
+
+  const handleSignUp = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -59,7 +105,7 @@ const SignUpPage = () => {
 
       {/* Main Card Container */}
       <div className="w-full max-w-115 bg-white border border-[#e2e8f0] rounded-xl p-8 shadow-sm">
-        <form onSubmit={onSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSignUp} className="flex flex-col gap-4">
           {/* Name Input */}
           <div className="flex flex-col gap-2">
             <label
@@ -72,6 +118,8 @@ const SignUpPage = () => {
               type="text"
               id="name"
               name="name"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               required
               minLength={3}
               maxLength={32}
@@ -92,6 +140,8 @@ const SignUpPage = () => {
               type="email"
               id="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="ahmed@mail.com"
               className="input validator w-full px-4 py-2 border border-[#e2e8f0] rounded-lg text-[14px] placeholder-[#a0aec0] focus:outline-none focus:border-green-600"
@@ -112,6 +162,8 @@ const SignUpPage = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={8}
                 maxLength={32}
@@ -145,6 +197,8 @@ const SignUpPage = () => {
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirm-password"
                 name="confirm_password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
                 minLength={8}
                 maxLength={32}
@@ -187,22 +241,18 @@ const SignUpPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <button
               type="button"
+              onClick={(e) => handleGoogleSignIn(e)}
               className="flex items-center justify-center gap-2 border border-[#e2e8f0] rounded-lg py-2.5 text-[14px] font-medium text-[#4a5568]  transition-colors hover:bg-white hover:border hover:border-[#008744]"
             >
-              {/* Substitute with an actual SVG */}
-              <span className="text-red-500 font-bold">
-                <FcGoogle />
-              </span>
-              <span>Google দিয়ে চালিয়ে যান</span>
+              <FcGoogle /> Google দিয়ে চালিয়ে যান
             </button>
             <button
               type="button"
+              onClick={(e) => handleGithubSignIn(e)}
               className="flex items-center justify-center gap-2 border border-[#e2e8f0] rounded-lg py-2.5 text-[14px] font-medium text-[#4a5568] transition-colors hover:bg-white hover:border hover:border-[#008744]"
             >
-              <span className="text-black font-bold">
-                <FaGithub />
-              </span>
-              <span>GitHub দিয়ে চালিয়ে যান</span>
+              <FaGithub />
+              GitHub দিয়ে চালিয়ে যান
             </button>
           </div>
 

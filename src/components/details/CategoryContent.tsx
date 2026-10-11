@@ -2,6 +2,7 @@ import ProductCard from "@/components/shared/ProductCard";
 import { baseUrl, getCategories } from "@/helper/apiData";
 import { Product } from "@/types/type";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const getCategoryProducts = async (categoryId: string) => {
   try {
@@ -27,11 +28,15 @@ interface CategoryContentProps {
 
 const CategoryContent = async ({ params }: CategoryContentProps) => {
   const { categoryId } = await params;
-
-  const categoryProducts = await getCategoryProducts(categoryId);
   const categories = await getCategories();
 
   const currentCategories = categories?.find((c) => c?.slug === categoryId);
+
+  if (!currentCategories) {
+    notFound();
+  }
+
+  const categoryProducts = await getCategoryProducts(categoryId);
 
   return (
     <section className="max-w-7xl mx-auto w-full my-8 px-4">

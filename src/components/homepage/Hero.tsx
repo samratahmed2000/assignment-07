@@ -1,9 +1,10 @@
-import date from "@/helper/dateToBangla";
 import hero from "@/assets/hero.png";
 import Image from "next/image";
 import BrowseProduct from "../button/BrowseProduct";
 
 const Hero = () => {
+  const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
+
   return (
     <section className="flex flex-col lg:flex-row justify-center lg:justify-between items-center lg:items-start p-4 my-8 max-w-7xl mx-8 md:mx-6 lg:mx-auto bg-white border border-gray-200 rounded-2xl">
       <div className="flex flex-col gap-4 px-2 py-1 items-center lg:items-start text-center lg:text-left">

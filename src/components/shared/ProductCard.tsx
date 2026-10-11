@@ -1,13 +1,12 @@
-import banglaPrice from "@/helper/banglaPrice";
-import unitToBengali from "@/helper/unitToBengla";
+import { formatPrice, getUnitBn } from "@/helper/utils";
 import { Product } from "@/types/type";
 import { BsDashLg } from "react-icons/bs";
-import { FaCaretDown, FaCaretUp } from "react-icons/fa";
+import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="flex flex-col justify-center items-center lg:items-start lg:justify-between gap-3 px-3 py-3 bg-white border border-gray-200 rounded-2xl">
-      <div className="flex flex-col items-center lg:items-start gap-3 p-1">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-3 p-1">
         <div className="w-20 h-20 lg:w-12 lg:h-12 text-6xl flex items-center justify-center rounded-lg lg:text-2xl bg-[#f0f5f0]">
           {product?.image}
         </div>
@@ -17,7 +16,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             {product?.nameBn}
           </span>
           <span className="text-[12px] font-normal">
-            প্রতি {unitToBengali({ unit: product?.unit }) || "কেজি"}
+            প্রতি {getUnitBn(product?.unit)}
           </span>
         </div>
       </div>
@@ -28,7 +27,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
           <div className="flex items-center gap-1">
             <span className="text-[20px] font-bold">
-              {banglaPrice.format(product?.today)}
+              {formatPrice(product?.today)}
             </span>
             <span className="text-[14px] font-medium">টাকা</span>
           </div>
@@ -45,7 +44,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               <BsDashLg />
             )}
           </span>
-          <span>{banglaPrice.format(Math.abs(product?.change?.pct))}%</span>
+          <span>{formatPrice(Math.abs(product?.change?.pct))}%</span>
         </div>
       </div>
     </div>
