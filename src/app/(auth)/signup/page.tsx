@@ -68,12 +68,18 @@ const SignUpPage = () => {
   const handleSignUp = async (e: React.SubmitEvent<HTMLElement>) => {
     e.preventDefault();
 
+    if (password !== confirmPassword) {
+      toast.error("পাসওয়ার্ড এবং নিশ্চিতকরণ পাসওয়ার্ড মেলেনি!");
+      return;
+    }
+
     const formData = new FormData(e.target);
     const user = Object.fromEntries(formData.entries()) as {
       name: string;
       email: string;
       image: string;
       password: string;
+      confirm_password: string;
     };
 
     const { data, error } = await signUp.email({
@@ -87,7 +93,7 @@ const SignUpPage = () => {
     }
 
     if (error) {
-      toast.error("পাসওয়ার্ড মেলেনি, সঠিক পাসওয়ার্ড দিন!");
+      toast.error(error.message);
     }
   };
 

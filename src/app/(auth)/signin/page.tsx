@@ -70,7 +70,7 @@ const SignInPage = () => {
     }
 
     if (error) {
-      toast.error("সাইন ইন করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন!");
+      toast.error(error.message);
     }
   };
 

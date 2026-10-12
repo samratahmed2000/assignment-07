@@ -3,6 +3,7 @@
 import { signOut, updateUser, useSession } from "@/lib/auth-client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { toast } from "react-toastify";
@@ -10,12 +11,25 @@ import { toast } from "react-toastify";
 const ProfilePage = () => {
   const { data: session } = useSession();
   const user = session?.user;
+  const router = useRouter();
 
   const [userName, setUserName] = useState<string | undefined>();
   const displayedName = userName ?? user?.name ?? "";
 
   const handleLogout = async () => {
-    await signOut();
+    try {
+      await signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            toast.success("সফলভাবে সাইন আউট হয়েছে!");
+            router.push("/signin");
+          },
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("সাইন আউট করতে সমস্যা হয়েছে।");
+    }
   };
 
   const handleUpdate = async (e: React.SubmitEvent<HTMLFormElement>) => {
