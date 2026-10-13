@@ -10,9 +10,15 @@ import { FaCaretDown, FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const UserInfo = () => {
-  const { data: session } = useSession();
+  const { data: session, isPending } = useSession();
   const user = session?.user;
   const router = useRouter();
+
+  if (isPending) {
+    return (
+      <div className="w-24 h-8 bg-gray-100 animate-pulse rounded-lg hidden sm:block"></div>
+    );
+  }
 
   const handleLogout = async () => {
     try {

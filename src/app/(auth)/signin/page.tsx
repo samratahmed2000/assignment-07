@@ -21,8 +21,8 @@ const SignInPage = () => {
     e.preventDefault();
     const data = await signIn.social({
       provider: "google",
-      callbackURL: "/",
     });
+
     if (data?.data) {
       toast.success("সাইন ইন সফল হয়েছে! 🎉!");
       router.push("/");
@@ -37,7 +37,6 @@ const SignInPage = () => {
     e.preventDefault();
     const data = await signIn.social({
       provider: "github",
-      callbackURL: "/",
     });
 
     if (data?.data) {
@@ -61,7 +60,6 @@ const SignInPage = () => {
 
     const { data, error } = await signIn.email({
       ...user,
-      callbackURL: "/",
     });
 
     if (data) {

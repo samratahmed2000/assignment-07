@@ -7,46 +7,37 @@ import MarqueeSkeleton from "../skeletons/MarqueeSkeleton";
 
 const Navbar = () => {
   return (
-    <header className="bg-white lg:sticky lg:top-0 lg:backdrop-blur-2xl lg:z-50 border-b border-gray-100">
-      <nav className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row justify-between items-center p-3 relative">
-        <Suspense fallback={<div className="bg-gray-50"></div>}>
-          <LogoLink />
+    <header className="w-full bg-white lg:sticky lg:top-0 lg:backdrop-blur-2xl lg:z-50 border-b border-gray-100 lg:flex lg:flex-col">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 lg:static lg:bg-transparent lg:border-b-0 lg:order-1">
+        <nav className="max-w-7xl mx-auto w-full flex justify-between items-center py-1 px-4 lg:p-3">
+          <Suspense
+            fallback={<div className="bg-gray-50 h-8 w-24 rounded"></div>}
+          >
+            <LogoLink />
+          </Suspense>
+          <div>
+            <UserInfo />
+          </div>
+        </nav>
+      </div>
+
+      <div className="h-13 lg:hidden"></div>
+
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-100 lg:static lg:border-t lg:order-2">
+        <div className="max-w-7xl mx-auto w-full">
+          <Suspense
+            fallback={<div className="bg-gray-50 h-10 w-full rounded"></div>}
+          >
+            <NavLinks />
+          </Suspense>
+        </div>
+      </div>
+
+      <div className="w-full lg:order-3">
+        <Suspense fallback={<MarqueeSkeleton />}>
+          <Marquee />
         </Suspense>
-
-        <label className="btn btn-circle swap swap-rotate lg:hidden">
-          <input type="checkbox" />
-
-          <svg
-            className="swap-off fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 512 512"
-          >
-            <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
-          </svg>
-
-          <svg
-            className="swap-on fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 512 512"
-          >
-            <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
-          </svg>
-        </label>
-
-        <UserInfo />
-      </nav>
-
-      <Suspense fallback={<div className="bg-gray-50"></div>}>
-        <NavLinks />
-      </Suspense>
-
-      <Suspense fallback={<MarqueeSkeleton />}>
-        <Marquee />
-      </Suspense>
+      </div>
     </header>
   );
 };

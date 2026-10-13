@@ -119,20 +119,6 @@ const CategoryContent = async ({
           </div>
         </div>
 
-        {/* {categoryProducts && categoryProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
-            {categoryProducts.map((product) => (
-              <Link key={product?.id} href={`/product/${product?.id}`}>
-                <ProductCard product={product} />
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20 font-bold text-red-500 text-lg bg-white rounded-2xl border border-gray-100 shadow-sm">
-            এই ক্যাটাগরিতে কোনো পণ্য পাওয়া যায়নি।
-          </div>
-        )} */}
-
         {sortedProducts && sortedProducts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
             {sortedProducts.map((product) => (

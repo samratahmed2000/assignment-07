@@ -28,7 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       >
         <ContextProvider>
           <Navbar />
-          <main>{children}</main>
+          <main className="pt-16 pb-20 lg:pt-0 lg:pb-0">{children}</main>
           <Footer />
           <ToastContainer />
           <SpeedInsights />

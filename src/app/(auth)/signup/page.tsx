@@ -3,6 +3,7 @@
 import { usePasswordToggle } from "@/helper/usePasswordToggle";
 import { useUserInfo } from "@/helper/useUserInfo";
 import { signIn, signUp } from "@/lib/auth-client";
+import { error } from "next/dist/build/output/log";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaGithub, FaLongArrowAltLeft } from "react-icons/fa";
@@ -35,7 +36,6 @@ const SignUpPage = () => {
     e.preventDefault();
     const data = await signIn.social({
       provider: "google",
-      callbackURL: "/",
     });
 
     if (data?.data) {
@@ -52,7 +52,6 @@ const SignUpPage = () => {
     e.preventDefault();
     const data = await signIn.social({
       provider: "github",
-      callbackURL: "/",
     });
 
     if (data?.data) {
@@ -84,7 +83,6 @@ const SignUpPage = () => {
 
     const { data, error } = await signUp.email({
       ...user,
-      callbackURL: "/signin",
     });
 
     if (data) {

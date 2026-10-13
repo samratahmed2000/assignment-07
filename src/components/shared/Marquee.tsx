@@ -9,7 +9,7 @@ const Marquee = async () => {
   const marquee = await getProducts();
 
   return (
-    <div className="border border-gray-100 py-2">
+    <div className="border border-gray-200 py-2">
       {marquee && marquee.length > 0 && (
         <MarqueeText direction="right" duration={10}>
           {marquee?.map((marquee) => (

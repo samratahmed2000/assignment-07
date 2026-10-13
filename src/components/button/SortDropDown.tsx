@@ -34,23 +34,6 @@ const SortDropdown = ({ currentSort }: SortDropdownProps) => {
         <option value="low-to-high">দাম: কম থেকে বেশি</option>
         <option value="high-to-low">দাম: বেশি থেকে কম</option>
       </select>
-
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-gray-500">
-        <svg
-          xmlns="http://w3.org"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="2"
-          stroke="currentColor"
-          className="w-4 h-4"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-          />
-        </svg>
-      </div>
     </div>
   );
 };

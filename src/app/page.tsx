@@ -5,6 +5,7 @@ import AllProducts from "@/components/homepage/AllProducts";
 import { Suspense } from "react";
 import PriceUpSkeleton from "@/components/skeletons/PriceUpSkeleton";
 import PriceDownSkeleton from "@/components/skeletons/PriceDownSkeleton";
+import AllProductsSkeleton from "@/components/skeletons/AllProductsSkeleton";
 
 const Homepage = () => {
   return (
@@ -16,7 +17,7 @@ const Homepage = () => {
       <Suspense fallback={<PriceDownSkeleton />}>
         <PriceDown />
       </Suspense>
-      <Suspense fallback={<div className="bg-gray-50"></div>}>
+      <Suspense fallback={<AllProductsSkeleton />}>
         <AllProducts />
       </Suspense>
     </main>
