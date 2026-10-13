@@ -3,7 +3,6 @@
 import { usePasswordToggle } from "@/helper/usePasswordToggle";
 import { useUserInfo } from "@/helper/useUserInfo";
 import { signIn, signUp } from "@/lib/auth-client";
-import { error } from "next/dist/build/output/log";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FaGithub, FaLongArrowAltLeft } from "react-icons/fa";

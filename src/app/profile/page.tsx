@@ -77,10 +77,10 @@ const ProfilePage = () => {
 
             <div className="flex flex-col">
               <span className="text-lg font-bold text-gray-800">
-                {displayedName || "Rezwan Ahmed"}
+                {displayedName}
               </span>
               <span className="text-sm text-gray-400 font-normal">
-                {user?.email || "rezwanahmed@gmail.com"}
+                {user?.email}
               </span>
             </div>
           </div>
