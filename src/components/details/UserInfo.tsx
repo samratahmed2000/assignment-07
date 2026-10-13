@@ -1,17 +1,33 @@
 "use client";
 
 import { signOut, useSession } from "@/lib/auth-client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { FaCaretDown, FaUser } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const UserInfo = () => {
   const { data: session } = useSession();
   const user = session?.user;
+  const router = useRouter();
 
   const handleLogout = async () => {
-    await signOut();
+    try {
+      await signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            toast.success("সফলভাবে সাইন আউট হয়েছে!");
+            router.push("/signin");
+          },
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("সাইন আউট করতে সমস্যা হয়েছে।");
+    }
   };
 
   return (
