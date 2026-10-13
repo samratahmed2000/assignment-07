@@ -3,20 +3,19 @@ import Marquee from "./Marquee";
 import LogoLink from "../button/LogoLink";
 import NavLinks from "./NavLinks";
 import UserInfo from "../details/UserInfo";
+import MarqueeSkeleton from "../skeletons/MarqueeSkeleton";
 
 const Navbar = () => {
   return (
     <header className="bg-white lg:sticky lg:top-0 lg:backdrop-blur-2xl lg:z-50 border-b border-gray-100">
       <nav className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row justify-between items-center p-3 relative">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className="bg-gray-50"></div>}>
           <LogoLink />
         </Suspense>
 
         <label className="btn btn-circle swap swap-rotate lg:hidden">
-          {/* this hidden checkbox controls the state */}
           <input type="checkbox" />
 
-          {/* hamburger icon */}
           <svg
             className="swap-off fill-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +26,6 @@ const Navbar = () => {
             <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
           </svg>
 
-          {/* close icon */}
           <svg
             className="swap-on fill-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -42,11 +40,11 @@ const Navbar = () => {
         <UserInfo />
       </nav>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="bg-gray-50"></div>}>
         <NavLinks />
       </Suspense>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<MarqueeSkeleton />}>
         <Marquee />
       </Suspense>
     </header>

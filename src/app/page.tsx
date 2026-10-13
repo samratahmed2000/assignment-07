@@ -16,7 +16,7 @@ const Homepage = () => {
       <Suspense fallback={<PriceDownSkeleton />}>
         <PriceDown />
       </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="bg-gray-50"></div>}>
         <AllProducts />
       </Suspense>
     </main>

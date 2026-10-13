@@ -5,7 +5,6 @@ import { getProducts } from "@/helper/apiData";
 import { BsDashLg } from "react-icons/bs";
 import { formatPrice, getUnitBn } from "@/helper/utils";
 
-
 const Marquee = async () => {
   const marquee = await getProducts();
 
@@ -37,9 +36,7 @@ const Marquee = async () => {
                       <BsDashLg />
                     )}
                   </span>
-                  <span>
-                    {Math.abs(marquee?.change?.pct ?? 0).toFixed(2)}%
-                  </span>
+                  <span>{Math.abs(marquee?.change?.pct ?? 0).toFixed(2)}%</span>
                 </div>
               </div>
             </Link>
